@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Exercise1 {
+public class Battleship {
 
-    public Exercise1() {
+    public Battleship() {
     }
 
     public String solution(int N, String S, String T) {
