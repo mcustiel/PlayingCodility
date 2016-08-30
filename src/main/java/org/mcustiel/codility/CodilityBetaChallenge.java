@@ -10,10 +10,10 @@ public class CodilityBetaChallenge {
 			for (int j = getStartingPoint(A, i); j < i; j++) {
 				intersect += reachCounts[j];
 			}
+			if (intersect > 10000000) {
+				return -1;
+			}
 			reachCounts[getReachIndex(A, i)]++;
-		}
-		if (intersect > 10000000) {
-			return -1;
 		}
 
 		return intersect;
