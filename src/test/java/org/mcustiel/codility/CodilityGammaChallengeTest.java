@@ -45,4 +45,9 @@ public class CodilityGammaChallengeTest {
     public void shouldNotHavePalindromWithFiveChars() {
     	assertThat(testee.solution("abcde"), is(0));
     }
+
+    @Test
+    public void shouldNotHavePalindromWithSevenCharsStartingPalindrom() {
+    	assertThat(testee.solution("abcdeba"), is(0));
+    }
 }

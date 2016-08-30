@@ -21,6 +21,6 @@ public class CodilityGammaChallenge {
 		System.out.println(string);
 
 		return string.charAt(0) == string.charAt(string.length() - 1)
-				&& (string.length() <= 3 || isPalindrom(string.substring(1, string.length() - 2)));
+				&& (string.length() <= 3 || isPalindrom(string.substring(1, string.length() - 1)));
 	}
 }
