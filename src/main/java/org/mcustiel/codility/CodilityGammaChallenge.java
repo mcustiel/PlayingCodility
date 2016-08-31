@@ -6,13 +6,13 @@ public class CodilityGammaChallenge {
 	public int solution(String S) {
 		int palindroms = 0;
 
-		if (isPalindrom(S)) {
-			palindroms++;
-		}
+		palindroms += isPalindrom(S) ? S.length() / 2 : 0;
 
-		for (int i = 1; i < S.length(); i++) {
+		System.out.println("----");
 
-		}
+		/*for (int i = 1; i < S.length(); i++) {
+
+		}*/
 
 		return palindroms;
 	}
@@ -21,6 +21,7 @@ public class CodilityGammaChallenge {
 		System.out.println(string);
 
 		return string.charAt(0) == string.charAt(string.length() - 1)
-				&& (string.length() <= 3 || isPalindrom(string.substring(1, string.length() - 1)));
+				&& (string.length() <= 3 || isPalindrom(
+						string.substring(1, string.length() - 1)));
 	}
 }
