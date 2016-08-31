@@ -16,16 +16,16 @@ public class CodilityGammaChallenge {
 			return getPalindromsCount(S);
 		}
 
-		while (head < tail) {
-			palindroms += getPalindromsCount(S.substring(head, tail))
-					+ getPalindromsCount(S.substring(0, tail))
-					+ getPalindromsCount(S.substring(0, head))
-					+ getPalindromsCount(S.substring(head, S.length()))
-					+ getPalindromsCount(S.substring(tail, S.length()));
-
+		while (head <= tail) {
 			if (control % 2 == 0) {
+				palindroms += getPalindromsCount(S.substring(head, tail))
+					+ getPalindromsCount(S.substring(0, head))
+					+ getPalindromsCount(S.substring(head, S.length()));
 				head++;
 			} else {
+				palindroms += getPalindromsCount(S.substring(head, tail))
+						+ getPalindromsCount(S.substring(0, tail))
+						+ getPalindromsCount(S.substring(tail, S.length()));
 				tail--;
 			}
 			control++;
@@ -43,7 +43,7 @@ public class CodilityGammaChallenge {
 
 	private int getPalindromsCount(String string)
 	{
-		return isPalindrom(string) ? string.length() / 2 : 0;
+		return isPalindrom(string) ? 1 : 0;
 	}
 
 	private boolean isPalindrom(String string) {

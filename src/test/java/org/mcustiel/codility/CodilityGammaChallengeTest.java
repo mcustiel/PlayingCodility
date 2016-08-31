@@ -22,6 +22,11 @@ public class CodilityGammaChallengeTest {
     }
 
     @Test
+    public void shouldHaveSixPalindroms() {
+    	assertThat(testee.solution("abcbabb"), is(6));
+    }
+
+    @Test
     public void shouldHaveTwoPalindromWithFiveChars() {
     	assertThat(testee.solution("abcba"), is(2));
     }
