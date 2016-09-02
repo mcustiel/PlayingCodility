@@ -17,13 +17,28 @@ public class CodilityGammaChallengeTest {
     }
 
     @Test
+    public void shouldHaveTwoPalindromsWithFourChars() {
+    	assertThat(testee.solution("abaa"), is(2));
+    }
+
+    @Test
+    public void shouldHaveFivePalindromsWithSixChars() {
+    	assertThat(testee.solution("abbabb"), is(5));
+    }
+
+    @Test
+    public void shouldHaveFourPalindromsWithFiveChars() {
+    	assertThat(testee.solution("abaaa"), is(4));
+    }
+
+    @Test
     public void shouldHaveOnePalindromWithTwoChars() {
     	assertThat(testee.solution("aa"), is(1));
     }
 
     @Test
     public void shouldHaveSixPalindroms() {
-    	assertThat(testee.solution("abcbabb"), is(6));
+    	assertThat(testee.solution("abcbabb"), is(4));
     }
 
     @Test

@@ -32,6 +32,7 @@ public class CodilityGammaChallenge {
 
 	private int getPalindromsCount(String string)
 	{
+		System.out.println("Verifying if palindrom '" + string + "': " + (isPalindrom(string) ? "Yes":"No"));
 		return isPalindrom(string) ? string.length()/2: 0;
 	}
 
