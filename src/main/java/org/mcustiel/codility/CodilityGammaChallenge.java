@@ -3,48 +3,89 @@ package org.mcustiel.codility;
 // WORK IN PROGRESS
 
 public class CodilityGammaChallenge {
-	public int solution(String S) {
-		int palindroms = 0, control = 0, head = 1, tail = S.length()-1;
 
+	private static class Count {
+		private int count = 0;
 
-	    palindroms = getPalindromsCount(S);
-
-		if (S.length() > 3) {
-			while (head <= tail) {
-				if (control % 2 == 0) {
-					palindroms += getPalindromsCount(S.substring(head, tail))
-						+ getPalindromsCount(S.substring(0, head))
-						+ getPalindromsCount(S.substring(head, S.length()))
-						+ getPalindromsCount(S.substring(head, S.length()/2+1));
-					head++;
-				} else {
-					palindroms += getPalindromsCount(S.substring(head, tail))
-							+ getPalindromsCount(S.substring(0, tail))
-							+ getPalindromsCount(S.substring(tail, S.length()))
-							+ getPalindromsCount(S.substring(S.length()/2+1, tail));
-					tail--;
-				}
-				control++;
-			}
+		public int get()  {
+			return count;
 		}
-		return palindroms;
+
+		public void inc() {
+			count++;
+		}
+
+		public void overflow() {
+			count = -1;
+		}
 	}
 
-	private int getPalindromsCount(String string)
-	{
-		System.out.println("Verifying if palindrom '" + string + "': " + (isPalindrom(string) ? "Yes":"No"));
-		return isPalindrom(string) ? string.length()/2: 0;
+	public void leftCount(String S, Count count) {
+		if (count.get() > 100000000) {
+			count.overflow();
+		}
+		if (count.get() == -1) {
+			return;
+		}
+		if (S.length() < 2) {
+			return;
+		}
+
+		if (isPalindrom(S)) {
+			count.inc();
+		}
+
+		if (S.length() == 2 ) {
+			return;
+		}
+
+		leftCount(S.substring(0, S.length() - 1), count);
+
+		rightCount(S.substring(1, S.length()), count);
+	}
+
+	public void rightCount(String S, Count count) {
+		if (count.get() > 100000000) {
+			count.overflow();
+		}
+		if (count.get() == -1) {
+			return;
+		}
+
+		if (S.length() < 2) {
+			return;
+		}
+
+		if (isPalindrom(S)) {
+			count.inc();
+		}
+
+		if (S.length() == 2 ) {
+			return;
+		}
+
+		rightCount(S.substring(1, S.length()), count);
+	}
+
+	public int solution(String S) {
+		Count count = new Count();
+		leftCount(S, count);
+		return count.get();
 	}
 
 	private boolean isPalindrom(String string) {
-		if (string.length() <= 1) {
+		if (string.length() < 2) {
 			return false;
 		}
 
-		return string.charAt(0) == string.charAt(string.length() - 1)
-				&& (string.length() <= 3 || isPalindrom(
-						string.substring(1, string.length() - 1)));
+		if (string.length() <= 3) {
+			return string.charAt(0) == string.charAt(string.length() - 1);
+		}
+
+		if (string.charAt(0) != string.charAt(string.length() - 1)) {
+			return false;
+		}
+
+		return isPalindrom(string.substring(1, string.length()-1));
 	}
-
-
 }
