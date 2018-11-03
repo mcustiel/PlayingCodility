@@ -35,4 +35,24 @@ public class CodilityGammaChallengeTest {
     public void testFour() {
     	assertThat(testee.solution("caabbbaa"), is(7));
     }
+
+    @Test
+    public void testFive() {
+    	assertThat(testee.solution(""), is(0));
+    }
+
+    @Test
+    public void testSix() {
+    	assertThat(testee.solution("ab"), is(0));
+    }
+
+    @Test
+    public void testSeven() {
+    	assertThat(testee.solution("bb"), is(1));
+    }
+
+    @Test
+    public void testEight() {
+    	assertThat(testee.solution("bab"), is(1));
+    }
 }
