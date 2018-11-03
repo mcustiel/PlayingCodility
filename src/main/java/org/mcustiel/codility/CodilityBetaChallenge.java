@@ -19,24 +19,20 @@ public class CodilityBetaChallenge {
 		return intersect;
 	}
 
-	private int getIntersectingAhead(int[] circlesCollection,
-			int currentPosition) {
-		return circlesCollection[currentPosition] >= circlesCollection.length
-				- currentPosition
-						? circlesCollection.length - currentPosition - 1
-						: circlesCollection[currentPosition];
+	private int getIntersectingAhead(int[] circlesCollection, int currentPosition) {
+		return circlesCollection[currentPosition] >= circlesCollection.length - currentPosition
+				? circlesCollection.length - currentPosition - 1
+				: circlesCollection[currentPosition];
 	}
 
 	private int getReachIndex(int[] circlesCollection, int currentPosition) {
-		return circlesCollection[currentPosition] >= circlesCollection.length
-				- currentPosition - 1
-						? circlesCollection.length - 1
-						: currentPosition + circlesCollection[currentPosition];
+		return circlesCollection[currentPosition] >= circlesCollection.length - currentPosition - 1
+				? circlesCollection.length - 1
+				: currentPosition + circlesCollection[currentPosition];
 	}
 
 	private int getStartingPoint(int[] circlesCollection, int currentPosition) {
-		return currentPosition - circlesCollection[currentPosition] < 0
-				? 0
+		return currentPosition - circlesCollection[currentPosition] < 0 ? 0
 				: currentPosition - circlesCollection[currentPosition];
 	}
 }

@@ -30,4 +30,9 @@ public class CodilityGammaChallengeTest {
     public void testThree() {
     	assertThat(testee.solution("baababa"), is(6));
     }
+
+    @Test
+    public void testFour() {
+    	assertThat(testee.solution("caabbbaa"), is(7));
+    }
 }

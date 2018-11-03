@@ -4,88 +4,26 @@ package org.mcustiel.codility;
 
 public class CodilityGammaChallenge {
 
-	private static class Count {
-		private int count = 0;
-
-		public int get()  {
-			return count;
-		}
-
-		public void inc() {
-			count++;
-		}
-
-		public void overflow() {
-			count = -1;
-		}
-	}
-
-	public void leftCount(String S, Count count) {
-		if (count.get() > 100000000) {
-			count.overflow();
-		}
-		if (count.get() == -1) {
-			return;
-		}
-		if (S.length() < 2) {
-			return;
-		}
-
-		if (isPalindrom(S)) {
-			count.inc();
-		}
-
-		if (S.length() == 2 ) {
-			return;
-		}
-
-		leftCount(S.substring(0, S.length() - 1), count);
-
-		rightCount(S.substring(1, S.length()), count);
-	}
-
-	public void rightCount(String S, Count count) {
-		if (count.get() > 100000000) {
-			count.overflow();
-		}
-		if (count.get() == -1) {
-			return;
-		}
-
-		if (S.length() < 2) {
-			return;
-		}
-
-		if (isPalindrom(S)) {
-			count.inc();
-		}
-
-		if (S.length() == 2 ) {
-			return;
-		}
-
-		rightCount(S.substring(1, S.length()), count);
-	}
-
 	public int solution(String S) {
-		Count count = new Count();
-		leftCount(S, count);
-		return count.get();
+		int length = S.length() - 1;
+		int palindroms = 0;
+		for (int i = 0; i < length; i++) {
+			palindroms += count(S, i, i + 1);
+			palindroms += count(S, i, i + 2);
+			if (palindroms >= 100000000) {
+				return -1;
+			}
+		}
+		return palindroms;
 	}
 
-	private boolean isPalindrom(String string) {
-		if (string.length() < 2) {
-			return false;
+	private int count(String S, int start, int end) {
+		if (start < 0 || end >= S.length()) {
+			return 0;
 		}
-
-		if (string.length() <= 3) {
-			return string.charAt(0) == string.charAt(string.length() - 1);
+		if (S.charAt(start) == S.charAt(end)) {
+			return 1 + count(S, start - 1, end + 1);
 		}
-
-		if (string.charAt(0) != string.charAt(string.length() - 1)) {
-			return false;
-		}
-
-		return isPalindrom(string.substring(1, string.length()-1));
+		return 0;
 	}
 }
