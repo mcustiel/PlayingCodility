@@ -40,6 +40,10 @@ public class CodilityGammaChallengeTest {
     public void testFive() {
     	assertThat(testee.solution(""), is(0));
     }
+    @Test
+    public void testNein() {
+    	assertThat(testee.solution("a"), is(0));
+    }
 
     @Test
     public void testSix() {
@@ -54,5 +58,14 @@ public class CodilityGammaChallengeTest {
     @Test
     public void testEight() {
     	assertThat(testee.solution("bab"), is(1));
+    }
+
+    @Test
+    public void testTen() {
+    	assertThat(testee.solution(
+    			new String(new char[1000]).replace("\0", "a") +
+    			new String(new char[1000]).replace("\0", "b") +
+    			new String(new char[1000]).replace("\0", "c")),
+			is(1498500));
     }
 }

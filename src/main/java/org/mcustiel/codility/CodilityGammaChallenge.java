@@ -9,10 +9,10 @@ public class CodilityGammaChallenge {
 		int end = length - 2;
 		int palindroms = 0;
 		int i = end, j;
-		int[][] check = new int[length][length];
-		int[] items = new int[length];
+		int[][] check = new int[length][length/2];
+		int[] items = new int[length/2];
 
-		if (length > 0) {
+		if (length > 1) {
 
 			char[] characters = S.toCharArray();
 
@@ -24,7 +24,7 @@ public class CodilityGammaChallenge {
 			}
 			end--;
 
-			for (i = end; i >= 0; i--) {
+			for (i = end; i >= 0 && palindroms <= 100000000; i--) {
 				if (characters[i] == characters[i + 1]) {
 					if (i > 0) {
 						check[i - 1][items[i - 1]++] = 3;
@@ -37,9 +37,7 @@ public class CodilityGammaChallenge {
 					}
 					palindroms++;
 				}
-				if (palindroms > 100000000) {
-					return -1;
-				}
+
 				for (j = 0; j < items[i]; j++) {
 					if (i + check[i][j] < length && characters[i] == characters[i + check[i][j]]) {
 						palindroms++;
@@ -49,6 +47,9 @@ public class CodilityGammaChallenge {
 						}
 					}
 				}
+			}
+			if (palindroms > 100000000) {
+				return -1;
 			}
 		}
 		return palindroms;
