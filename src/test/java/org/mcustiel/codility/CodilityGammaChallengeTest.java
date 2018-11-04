@@ -68,4 +68,11 @@ public class CodilityGammaChallengeTest {
     			new String(new char[1000]).replace("\0", "c")),
 			is(1498500));
     }
+
+    @Test
+    public void testEleven() {
+    	assertThat(testee.solution(
+    			new String(new char[20000]).replace("\0", "a")),
+			is(-1));
+    }
 }
