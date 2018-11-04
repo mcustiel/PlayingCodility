@@ -4,16 +4,16 @@ package org.mcustiel.codility;
 
 public class CodilityGammaChallenge {
 
-	/**
-	 * @param S
-	 * @return
-	 */
 	public int solution(String S) {
 		int stringLength = S.length(), palindromes = 0;
 		int i, j;
 		int[][] palindromesIndexes = new int[2][stringLength];
-		int[] palindromesToCheck = new int[2];
+		int[] palindromesEndIndexes = new int[2];
 		int curPos, nextPos;
+		// Cache to accelerate array access
+		int[] nextIndexes, endIndexes;
+		int nextCount, currentCount;
+		int currentEndIndex;
 
 		if (stringLength > 1) {
 			char[] characters = S.toCharArray();
@@ -21,32 +21,38 @@ public class CodilityGammaChallenge {
 			for (i = stringLength - 1; i > 0; i--) {
 				curPos = i % 2;
 				nextPos = (i - 1) % 2;
-				palindromesToCheck[nextPos] = 0;
+				nextCount = 0;
+				nextIndexes = palindromesIndexes[nextPos];
+				endIndexes = palindromesIndexes[curPos];
+				currentCount = palindromesEndIndexes[curPos];
 
-				for (j = 0; j < palindromesToCheck[curPos]; j++) {
-					if (palindromesIndexes[curPos][j] < stringLength
-							&& characters[i] == characters[palindromesIndexes[curPos][j]]) {
+				for (j = 0; j < currentCount; j++) {
+					currentEndIndex = endIndexes[j];
+					if (currentEndIndex < stringLength && characters[i] == characters[currentEndIndex]) {
 						palindromes++;
-						palindromesIndexes[nextPos][palindromesToCheck[nextPos]] = palindromesIndexes[curPos][j] + 1;
-						palindromesToCheck[nextPos]++;
+						nextIndexes[nextCount] = currentEndIndex + 1;
+						nextCount++;
 					}
 				}
-				palindromesIndexes[nextPos][palindromesToCheck[nextPos]++] = i;
-				palindromesIndexes[nextPos][palindromesToCheck[nextPos]++] = i + 1;
+				nextIndexes[nextCount++] = i;
+				nextIndexes[nextCount++] = i + 1;
+				palindromesEndIndexes[nextPos] = nextCount;
 			}
 			if (i == 0) {
-				for (j = 0; j < palindromesToCheck[i]; j++) {
-					if (palindromesIndexes[i][j] < stringLength
-							&& characters[i] == characters[palindromesIndexes[i][j]]) {
+				endIndexes = palindromesIndexes[i];
+				currentCount = palindromesEndIndexes[i];
+				for (j = 0; j < currentCount; j++) {
+					currentEndIndex = endIndexes[j];
+					if (currentEndIndex < stringLength && characters[i] == characters[currentEndIndex]) {
 						palindromes++;
 					}
 				}
 			}
+			if (palindromes > 100000000) {
+				return -1;
+			}
 		}
 
-		if (palindromes > 100000000) {
-			return -1;
-		}
 		return palindromes;
 	}
 }

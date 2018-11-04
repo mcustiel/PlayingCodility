@@ -64,7 +64,8 @@ public class CodilityGammaChallengeTest {
 	@Test
 	public void testTen() {
 		assertThat(testee.solution(new String(new char[1000]).replace("\0", "a")
-				+ new String(new char[1000]).replace("\0", "b") + new String(new char[1000]).replace("\0", "c")),
+				+ new String(new char[1000]).replace("\0", "b")
+				+ new String(new char[1000]).replace("\0", "c")),
 				is(1498500));
 	}
 
@@ -81,7 +82,8 @@ public class CodilityGammaChallengeTest {
 	@Test
 	public void testThirteen() {
 		assertThat(testee.solution(new String(new char[2000]).replace("\0", "b")
-				+ new String(new char[2000]).replace("\0", "a") + new String(new char[2000]).replace("\0", "b")
+				+ new String(new char[2000]).replace("\0", "a")
+				+ new String(new char[2000]).replace("\0", "b")
 				+ new String(new char[2000]).replace("\0", "a")), is(8000000));
 	}
 }
