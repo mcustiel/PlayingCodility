@@ -1,7 +1,5 @@
 package org.mcustiel.codility;
 
-// WORK IN PROGRESS
-
 public class CodilityGammaChallenge {
 
 	public int solution(String S) {
