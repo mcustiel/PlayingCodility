@@ -6,8 +6,6 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-// WORK IN PROGRESS
-
 public class CodilityGammaChallengeTest {
 	private CodilityGammaChallenge testee;
 
