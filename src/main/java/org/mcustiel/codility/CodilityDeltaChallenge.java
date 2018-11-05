@@ -8,11 +8,13 @@ public class CodilityDeltaChallenge {
 		if (N == 0) {
 			return 0;
 		}
+		if (N == 1) {
+			return Math.abs(A[0]);
+		}
 
 		int minimumAbsVal = Integer.MAX_VALUE;
-		int limit = (int) Math.pow(2, (N - 1));
-
-		int currentVal = 0;
+		int limit = (int) Math.pow(2, N - 1);
+		int currentVal;
 
 		for (int j = 0; j < limit && minimumAbsVal != 0; j++) {
 			currentVal = 0;
@@ -23,10 +25,16 @@ public class CodilityDeltaChallenge {
 					currentVal -= A[i];
 				}
 			}
-			currentVal = Math.abs(currentVal);
+			if (currentVal < 0) {
+				currentVal *= -1;
+			}
 			if (currentVal < minimumAbsVal) {
 				minimumAbsVal = currentVal;
 			}
+		}
+
+		if (Integer.MAX_VALUE == minimumAbsVal) {
+			return 0;
 		}
 
 		return minimumAbsVal;
