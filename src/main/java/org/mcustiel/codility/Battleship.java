@@ -41,7 +41,7 @@ public class Battleship {
 
 	public List<Ship> parseShips(String ships, int maxShips) {
 		List<Ship> shipsList = new ArrayList<Ship>(maxShips);
-		String[] shipsCoords = ships.split(", ");
+		String[] shipsCoords = ships.split(",");
 		for (String shipCoord : shipsCoords) {
 			String[] coords = shipCoord.split(" ");
 			shipsList.add(new Ship(new Point(coords[0]), new Point(coords[1])));
